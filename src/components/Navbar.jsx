@@ -14,6 +14,10 @@ import {
 
 
 function Navbar(){
+
+  let loginuser=JSON.parse(localStorage.getItem("logedin"))
+  let username=(loginuser.firstname)
+  console.log()
   return (
     <div className="w-full text-gray-700 font-sans">
       {/* Top Bar */}
@@ -66,7 +70,7 @@ function Navbar(){
 
             {/* Profile */}
             <div className="cursor-pointer text-gray-600 hover:text-blue-500">
-              <FontAwesomeIcon icon={faUser} />
+                <p className='userfirstname'>{username.at(0)}</p>
             </div>
 
             {/* Cart */}

@@ -1,2 +1,12 @@
 @import "tailwindcss";
 
+
+.userfirstname{
+    background-color: #0aad0a;
+    display: inline;
+    padding: 10px 15px;
+    text-transform: uppercase;
+    color: white;
+    border-radius: 50%;
+}
+
