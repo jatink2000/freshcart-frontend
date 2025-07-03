@@ -1,10 +1,52 @@
-import React from 'react';
+import React, { useState } from 'react';
 import forgetpasswordpic from '../assets/forgetpasswordpic.svg';
 import freshcartlogo from '../assets/freshcartlogo.svg';
+import axios from 'axios';
+import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 
 
-function ForgetPassword(){
+function ForgetPassword() {
+
+  let [resetpassword, setresetpassword] = useState([])
+  let go = useNavigate()
+
+  let inputvalue = (e) => {
+    setresetpassword(
+      { ...resetpassword, [e.target.name]: e.target.value }
+    )
+  }
+
+
+  let resetbtn = () => {
+    if (resetpassword.password == resetpassword.confrmpassword) {
+      axios.post("http://localhost:8080/resetpassword", { resetpassword }).then((res) => {
+        if (res.data.status) {
+          Swal.fire({
+            title: "Reset Password Success !",
+            icon: "success"
+          });
+
+          go("/")
+        }
+        else {
+          Swal.fire({
+            icon: "error",
+            title: "Not A User.. ",
+          });
+          go("/signup")
+        }
+      }).catch((err) => {
+        console.log(err)
+      })
+    }
+    else {
+      alert("password not matched")
+    }
+  }
+
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Navbar */}
@@ -25,36 +67,58 @@ function ForgetPassword(){
 
         {/* Right Form */}
         <div className="w-full md:w-1/2 max-w-md bg-white p-8 shadow-lg rounded-md">
-          <form>
-            <h1 className="text-2xl font-bold text-gray-800 mb-2">Forgot your password?</h1>
-            <p className="text-sm text-gray-600 mb-6">
-              Please enter the email address associated with your account. We’ll send you a reset link.
-            </p>
+          <h1 className="text-2xl font-bold text-gray-800 mb-2">Forgot your password?</h1>
+          <p className="text-sm text-gray-600 mb-6">
+            Please enter the email address associated with your account. We’ll send you a reset link.
+          </p>
 
-            {/* Email Input */}
-            <div className="mb-4">
-              <input
-                type="email"
-                placeholder="Email"
-                className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
-              />
-            </div>
+          {/* Email Input */}
+          <div className="mb-4">
+            <input
+              type="email"
+              onChange={inputvalue}
+              name='email'
+              placeholder="Email"
+              className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+            />
+          </div>
 
-            {/* Buttons */}
-            <button
-              type="submit"
-              className="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700 transition duration-200"
-            >
-              Reset Password
-            </button>
 
-            <button
-              type="button"
-              className="w-full bg-gray-100 text-black py-2 rounded hover:bg-gray-300 transition duration-200 mt-4"
-            >
-              Back
-            </button>
-          </form>
+          <div className="mb-4">
+            <input
+              type="password"
+              onChange={inputvalue}
+              name='password'
+              placeholder="Password"
+              className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+            />
+          </div>
+
+
+          <div className="mb-4">
+            <input
+              type="password"
+              onChange={inputvalue}
+              name='confrmpassword'
+              placeholder="Confrm Password"
+              className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+            />
+          </div>
+
+          {/* Buttons */}
+          <button
+            onClick={resetbtn}
+            className="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700 transition duration-200"
+          >
+            Reset Password
+          </button>
+
+          <button
+            type="button"
+            className="w-full bg-gray-100 text-black py-2 rounded hover:bg-gray-300 transition duration-200 mt-4"
+          >
+            Back
+          </button>
         </div>
       </div>
     </div>
