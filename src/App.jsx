@@ -8,6 +8,7 @@ import WishListPage from './pages/WishListPage';
 import DashBoard from './pages/DashBoard';
 import DashBoardProduct from './pages/DashBoardProduct'
 import CheckOutPage from './pages/CheckOutPage'
+import AddProductForm from './Dashboard/components/AddProductForm';
 
 
 
@@ -23,6 +24,8 @@ const App = () => {
         <Route path="/dashboard" element={<DashBoard />} />
         <Route path='/CheckOutPage' element={<CheckOutPage/>} />
         <Route path='/DashBoard/DashBoardProduct' element={<DashBoardProduct/>} />
+        <Route path='/DashBoard/AddProductForm' element={<AddProductForm/>} />
+
       </Routes>
     </Router>
   );

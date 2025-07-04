@@ -1,9 +1,10 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom'
+import AddProductForm from './AddProductForm';
 
 
 
-function DashBoardNavbar(){
+const DashBoardNavbar = () => {
   return (
     <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between py-6">
       {/* Left: Title and Breadcrumb */}
@@ -15,8 +16,10 @@ function DashBoardNavbar(){
       </div>
 
       {/* Right: Add Product Button */}
-      <Link to={"/DashBoard/AddProductForm"} className="bg-green-600 text-white px-5 py-2 rounded hover:bg-green-700 font-semibold">
+      <Link to="/AddProductForm">
+      <button className="bg-green-600 text-white px-5 py-2 rounded hover:bg-green-700 font-semibold">
         Add Product
+      </button>
       </Link>
     </div>
   );
