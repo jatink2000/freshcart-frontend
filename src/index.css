@@ -10,3 +10,40 @@
     border-radius: 50%;
 }
 
+
+
+.dashboardnav{
+    position: sticky;
+    top: 0;
+}
+
+
+
+
+
+.btndelete{
+    font-size: 13px;
+    text-align: left;
+    padding: 10px 20px;
+}
+
+
+.btndelete:hover{
+    background-color: aliceblue;
+    border-radius: 3px;
+
+}
+
+.actionbtn{
+    background-color: white;
+    border-radius: 3px;
+    padding: 2px;
+    position: absolute;
+    right: 10px;
+    display: none;
+}
+
+
+.actionmain{
+    position: relative;
+}

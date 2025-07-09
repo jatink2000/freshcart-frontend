@@ -12,9 +12,9 @@ import { Link } from "react-router-dom";
 import DashBoardProduct from "../Pages/DashBoardProduct"
 
 
-const DashBoardSidebar = () => {
+function DashBoardSidebar(){
   return (
-    <div className="w-64 bg-white shadow h-screen p-4 flex flex-col gap-2 border-r">
+    <div className="w-64 bg-white shadow h-screen p-4 flex flex-col gap-2 border-r dashboardnav">
       <h2 className="text-2xl font-bold flex items-center gap-2 text-green-700 mb-6">
         <span className="text-3xl">🛒</span> FreshCart
       </h2>
@@ -42,7 +42,7 @@ const DashBoardSidebar = () => {
         <button className="flex items-center gap-3 px-4 py-2 hover:bg-gray-100 rounded text-gray-700">
           🧑🏽‍💼 Sellers / Vendors
         </button>
-        <button className="flex items-center gap-3 px-4 py-2 hover:bg-gray-100 rounded bg-gray-100 font-semibold">
+        <button className="flex items-center gap-3 px-4 py-2 hover:bg-gray-100 rounded text-gray-700">
           <FaUsers /> Customers
         </button>
         <button className="flex items-center gap-3 px-4 py-2 hover:bg-gray-100 rounded text-gray-700">

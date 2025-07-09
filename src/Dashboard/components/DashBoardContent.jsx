@@ -1,6 +1,6 @@
 import React from 'react'
 
-const DashBoardContent = () => {
+function DashBoardContent(){
   return (
     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
       <div className="bg-white shadow rounded p-4 flex justify-between items-center">

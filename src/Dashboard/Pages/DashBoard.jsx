@@ -5,7 +5,7 @@ import DashBoardContent from "../components/DashBoardContent";
 
 
 
-const DashBoard = () => {
+function DashBoard(){
   return (
     <div className="flex min-h-screen bg-gray-50">
       <DashBoardSidebar />

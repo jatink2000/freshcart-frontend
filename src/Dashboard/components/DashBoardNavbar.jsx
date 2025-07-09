@@ -4,7 +4,7 @@ import AddProductForm from './AddProductForm';
 
 
 
-const DashBoardNavbar = () => {
+function DashBoardNavbar(){
   return (
     <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between py-6">
       {/* Left: Title and Breadcrumb */}

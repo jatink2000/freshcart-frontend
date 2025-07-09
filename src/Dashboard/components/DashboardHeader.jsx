@@ -1,6 +1,6 @@
 import React from 'react'
 
-const DashboardHeader = () => {
+function DashboardHeader(){
   return (
     
     <div className="flex justify-between items-center p-4">
