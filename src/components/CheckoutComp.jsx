@@ -160,3 +160,11 @@ function CheckoutComp(){
 };
 
 export default CheckoutComp;
+
+
+
+
+
+// delete wishlist : 
+// add to cart 
+// cart : display 

@@ -11,6 +11,7 @@ import {
   faFile,
   faLayerGroup
 } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 
 
 function Navbar(){
@@ -61,12 +62,16 @@ function Navbar(){
           {/* Icons */}
           <div className="flex items-center gap-6 text-xl">
             {/* Wishlist */}
-            <div className="relative cursor-pointer text-gray-600 hover:text-red-500">
+
+            <Link to={"/wishlistpage"}>
+              <div className="relative cursor-pointer text-gray-600 hover:text-red-500" >
               <FontAwesomeIcon icon={faHeart} />
               <span className="absolute -top-2 -right-3 bg-green-600 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
                 4
               </span>
             </div>
+            </Link>
+            
 
             {/* Profile */}
             <div className="cursor-pointer text-gray-600 hover:text-blue-500">

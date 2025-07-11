@@ -10,6 +10,7 @@ import DashBoard from './Dashboard/Pages/DashBoard';
 import DashBoardProduct from './Dashboard/Pages/DashBoardProduct';
 import AddProductForm from './Dashboard/components/AddProductForm';
 import Editproduct from './Dashboard/components/Editproduct';
+import ProductDetail from './components/ProductDetails';
 
 
 
@@ -22,13 +23,12 @@ const App = () => {
         <Route path="/forgetpassword" element={<ForgetPassword />} />
         <Route path="/home" element={<Home />} />
         <Route path="/wishlistpage" element={<WishListPage />} />
+        <Route path="/ProductDetail" element={<ProductDetail />} />
         <Route path='/CheckOutPage' element={<CheckOutPage/>} />
         <Route path="/dashboard" element={<DashBoard />} />
         <Route path="/dashboard/DashBoardProduct" element={<DashBoardProduct />} />
         <Route path="/AddProductForm" element={<AddProductForm />} />
         <Route path="/Editproduct" element={<Editproduct />} />
-
-
       </Routes>
     </Router>
   );

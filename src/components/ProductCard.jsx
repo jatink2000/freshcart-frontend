@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import ProductDetail from '../components/ProductDetails'
 import axios from 'axios';
 import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -25,6 +26,16 @@ function ProductCard() {
     })
   }
 
+
+
+  // ProductDetail --------------------------
+
+  let go=useNavigate()
+
+  let productdetails=(item)=>{
+    go("/ProductDetail",{state:item})
+  }
+
   return (
     <>
       <div className='px-4'>
@@ -34,7 +45,7 @@ function ProductCard() {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 p-4">
 
         {Products.map((item) => (
-          <div key={item.id} className="border rounded-lg p-3 shadow hover:shadow-lg transition relative">
+          <div key={item.id} className="border rounded-lg p-3 shadow hover:shadow-lg transition relative" onClick={()=>productdetails(item)}>
 
             {/* Tag and Discount */}
             {(item.tag || item.discount) && (
