@@ -7,9 +7,12 @@ import productimg2 from '../assets/productimg2.jpg'
 import productimg3 from '../assets/productimg3.jpg'
 import axios from 'axios';
 import { useEffect } from 'react'
-import { Popover } from '@headlessui/react';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
+
+
+import { Menu } from '@headlessui/react';
+import { EllipsisVerticalIcon } from '@heroicons/react/24/outline';
 
 
 function DashBoardProduct() {
@@ -79,9 +82,9 @@ function DashBoardProduct() {
 
   // editproduct ------------------
 
- let go= useNavigate()
-  let edititem=(product)=>{
-    go("/Editproduct",{state:product})
+  let go = useNavigate()
+  let edititem = (product) => {
+    go("/Editproduct", { state: product })
   }
 
   return (
@@ -90,15 +93,10 @@ function DashBoardProduct() {
       <main className="flex-1 p-4">
         <DashboardHeader />
         <DashBoardNavbar />
-
-
         <div className="overflow-x-auto mt-6 rounded-xl shadow-sm">
           <table className="min-w-full bg-white border rounded-xl text-left">
             <thead className="bg-gray-100 text-gray-600 text-sm uppercase">
               <tr>
-                <th className="p-4">
-                  <input type="checkbox" />
-                </th>
                 <th className="p-4">Image</th>
                 <th className="p-4">Product Name</th>
                 <th className="p-4">Category</th>
@@ -113,9 +111,6 @@ function DashBoardProduct() {
                   key={product.id}
                   className="border-t hover:bg-gray-50 transition duration-200"
                 >
-                  <td className="p-4">
-                    <input type="checkbox" />
-                  </td>
                   <td className="p-4">
                     <img
                       src={product.productimage}
@@ -133,17 +128,38 @@ function DashBoardProduct() {
                   <td className="p-4 text-gray-800">${product.saleprice}</td>
 
                   <td className="p-4">
-                    <button className="text-gray-400 hover:text-black text-xl actionmain">
-                      <div className='icon' onClick={openactionbtn}>
-                        ⋮
-                      </div>
+                    <Menu as="div" className="relative inline-block text-left">
+                      <Menu.Button className="p-2 rounded-full hover:bg-gray-200">
+                        <EllipsisVerticalIcon className="w-5 h-5 text-gray-600" />
+                      </Menu.Button>
 
-                      <div className='actionbtn' id='actionbtn'>
-                        <p className='btndelete' onClick={() => deleteproduct(product)}>Delete</p>
-                        <p className='btndelete' onClick={()=>edititem(product)}>Edit</p>
-                      </div>
-
-                    </button>
+                      <Menu.Items className="absolute right-0 mt-2 w-28 origin-top-right bg-white border border-gray-200 divide-y divide-gray-100 rounded-md shadow-lg focus:outline-none z-10">
+                        <div className="p-1">
+                          <Menu.Item>
+                            {({ active }) => (
+                              <button
+                                className={`${active ? 'bg-gray-100' : ''
+                                  } w-full text-left px-4 py-2 text-sm text-gray-700`}
+                                onClick={() => edititem(product)}
+                              >
+                                Edit
+                              </button>
+                            )}
+                          </Menu.Item>
+                          <Menu.Item>
+                            {({ active }) => (
+                              <button
+                                className={`${active ? 'bg-gray-100' : ''
+                                  } w-full text-left px-4 py-2 text-sm text-red-600`}
+                                onClick={() => deleteproduct(product)}
+                              >
+                                Delete
+                              </button>
+                            )}
+                          </Menu.Item>
+                        </div>
+                      </Menu.Items>
+                    </Menu>
                   </td>
                 </tr>
               ))}

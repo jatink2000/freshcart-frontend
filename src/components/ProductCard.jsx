@@ -85,10 +85,6 @@ function ProductCard() {
               )}
             </div>
 
-            {/* Add Button */}
-            <button className="mt-3 w-half bg-green-600 text-white text-sm py-1 rounded hover:bg-green-700 transition">
-              + Add
-            </button>
           </div>
         ))}
       </div>

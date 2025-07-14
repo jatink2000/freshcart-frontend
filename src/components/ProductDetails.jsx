@@ -5,6 +5,8 @@ import Footer from "./Footer";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
+import Review from "./Review";
+import ReviewList from "./Reviewlist";
 
 function ProductDetail() {
 
@@ -37,7 +39,7 @@ function ProductDetail() {
     <>
 
       <Navbar />
-      <div className="max-w-7xl mx-auto px-6 py-12">
+      <div className="max-w-7xl mx-auto px-6 py-6">
         <div className="grid md:grid-cols-2 gap-12 items-start">
           {/* Product Image */}
           <div className="bg-gray-100 rounded-xl p-6 flex justify-center">
@@ -50,12 +52,7 @@ function ProductDetail() {
 
           {/* Product Info */}
           <div className="space-y-6">
-            {/* Breadcrumb */}
-            <div className="text-sm text-gray-500">
-              <span className="text-green-600 font-medium">Home</span> /{" "}
-              <span className="text-green-600 font-medium">Shop</span> /{" "}
-              Haldiram's Sev Bhujia
-            </div>
+      
 
             {/* Category */}
             <p className="text-green-600 font-semibold">{a.productcategory}</p>
@@ -128,6 +125,32 @@ function ProductDetail() {
           </div>
         </div>
       </div>
+
+
+
+
+
+
+      <div className="max-w-7xl mx-auto px-6 py-6">
+        <div className="flex flex-col-reverse md:flex-row gap-12 items-start">
+
+          {/* Review list */}
+          <div className="w-full md:w-1/2">
+            <ReviewList />
+          </div>
+
+          {/* Review form */}
+          <div className="w-full md:w-1/2 space-y-6">
+            <Review />
+          </div>
+
+        </div>
+      </div>
+
+
+
+
+
 
 
       <Footer />

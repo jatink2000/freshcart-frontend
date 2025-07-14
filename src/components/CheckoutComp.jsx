@@ -11,6 +11,8 @@ function CheckoutComp(){
           <span className="text-green-600 cursor-pointer">Sign in.</span>
         </p>
 
+
+
         {/* Layout Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-6">
           {/* Left Section - Delivery Info */}
@@ -160,9 +162,6 @@ function CheckoutComp(){
 };
 
 export default CheckoutComp;
-
-
-
 
 
 // delete wishlist : 

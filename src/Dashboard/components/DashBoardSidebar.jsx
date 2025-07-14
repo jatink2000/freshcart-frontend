@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 import DashBoardProduct from "../Pages/DashBoardProduct"
 
 
-function DashBoardSidebar(){
+function DashBoardSidebar() {
   return (
     <div className="w-64 bg-white shadow h-screen p-4 flex flex-col gap-2 border-r dashboardnav">
       <h2 className="text-2xl font-bold flex items-center gap-2 text-green-700 mb-6">
@@ -20,9 +20,12 @@ function DashBoardSidebar(){
       </h2>
 
       <div>
-        <button className="flex items-center w-full gap-3 px-4 py-2 rounded bg-green-100 text-green-700 font-semibold">
-          <FaHome /> Dashboard
-        </button>
+        <Link to={"/dashboard"}>
+          <button className="flex items-center w-full gap-3 px-4 py-2 rounded bg-green-100 text-green-700 font-semibold">
+            <FaHome /> Dashboard
+          </button>
+        </Link>
+
       </div>
 
       <p className="text-gray-400 text-sm mt-4 mb-1 px-4">Store Managements</p>
@@ -34,13 +37,7 @@ function DashBoardSidebar(){
           <FaBox /> Products
         </Link>
         <button className="flex items-center gap-3 px-4 py-2 hover:bg-gray-100 rounded text-gray-700">
-          <FaList /> Categories
-        </button>
-        <button className="flex items-center gap-3 px-4 py-2 hover:bg-gray-100 rounded text-gray-700">
           <FaShoppingBag /> Orders
-        </button>
-        <button className="flex items-center gap-3 px-4 py-2 hover:bg-gray-100 rounded text-gray-700">
-          🧑🏽‍💼 Sellers / Vendors
         </button>
         <button className="flex items-center gap-3 px-4 py-2 hover:bg-gray-100 rounded text-gray-700">
           <FaUsers /> Customers

@@ -1,27 +1,41 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 
 import DashBoardSidebar from "./DashBoardSidebar";
 import DashboardHeader from "./DashboardHeader";
 import { Link, useLocation } from 'react-router-dom';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 function Editproduct() {
 
 
-   let loc= useLocation()
-   let a= loc.state
-   console.log(a)
+    let loc = useLocation()
+
+    let [edititem, setedititem] = useState(loc.state)
 
 
-    let inputvaluebtn=()=>{
-
+    let inputvaluebtn = (e) => {
+        setedititem(
+            { ...edititem, [e.target.name]: e.target.value }
+        )
     }
 
 
 
 
-    let editproductbtn=()=>{
+    let editproductbtn = () => {
+        axios.post("http://localhost:8080/editproduct", { edititem }).then((res) => {
+            if (res.data.status) {
+                Swal.fire({
+                    title: "edit product.",
+                    icon: "success"
+                })
 
+            }
+        }).catch((err) => {
+            console.log(err)
+        })
     }
 
     return (
@@ -68,14 +82,14 @@ function Editproduct() {
                                         className="border border-gray-300 rounded-lg px-4 py-2 w-full"
                                         onChange={inputvaluebtn}
                                         name="producttitle"
-                                        value={a.producttitle}
+                                        value={edititem.producttitle}
                                     />
                                 </div>
                                 <div>
                                     <label className="block text-sm font-medium text-gray-700 mb-1">
                                         Product Category
                                     </label>
-                                    <select className="border border-gray-300 rounded-lg px-4 py-2 w-full" name="productcategory" onChange={inputvaluebtn} value={a.productcategory}>
+                                    <select className="border border-gray-300 rounded-lg px-4 py-2 w-full" name="productcategory" onChange={inputvaluebtn} value={edititem.productcategory}>
                                         <option>Select Product Category</option>
                                         <option value={"Fruits & Vegetables"}>Fruits & Vegetables</option>
                                         <option value={"Dairy"}>Dairy</option>
@@ -96,7 +110,7 @@ function Editproduct() {
                                         placeholder="Weight"
                                         className="border border-gray-300 rounded-lg px-4 py-2 w-full"
                                         onChange={inputvaluebtn}
-                                        value={a.productweight}
+                                        value={edititem.productweight}
                                     />
                                 </div>
                                 <div>
@@ -120,7 +134,7 @@ function Editproduct() {
                                         className="border border-gray-300 rounded-lg px-4 py-2 w-full"
                                         onChange={inputvaluebtn}
                                         name="productimage"
-                                        value={a.productimage}
+                                        value={edititem.productimage}
                                     />
                                 </div>
                             </div>
@@ -135,7 +149,7 @@ function Editproduct() {
                                 <textarea
                                     className="w-full h-28 border border-gray-300 rounded-b-md p-2 resize-none focus:outline-none"
                                     placeholder="" onChange={inputvaluebtn} name="productdescriptions"
-                                    value={a.productdescriptions}
+                                    value={edititem.productdescriptions}
                                 ></textarea>
                             </div>
 
@@ -164,7 +178,7 @@ function Editproduct() {
                                         placeholder="$0.00"
                                         className="w-full px-4 py-2 border border-gray-300 rounded-lg"
                                         onChange={inputvaluebtn}
-                                        value={a.regularprice}
+                                        value={edititem.regularprice}
                                         name="regularprice"
                                     />
                                 </div>
@@ -177,7 +191,7 @@ function Editproduct() {
                                         placeholder="$0.00"
                                         className="w-full px-4 py-2 border border-gray-300 rounded-lg"
                                         onChange={inputvaluebtn}
-                                        value={a.saleprice}
+                                        value={edititem.saleprice}
                                         name="saleprice"
                                     />
                                 </div>
@@ -192,3 +206,10 @@ function Editproduct() {
 }
 
 export default Editproduct
+
+
+
+// edit 
+// add to cart , detete 
+// wishlist add , delete 
+// wishlist se add to cart 

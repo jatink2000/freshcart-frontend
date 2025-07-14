@@ -29,6 +29,7 @@ const App = () => {
         <Route path="/dashboard/DashBoardProduct" element={<DashBoardProduct />} />
         <Route path="/AddProductForm" element={<AddProductForm />} />
         <Route path="/Editproduct" element={<Editproduct />} />
+
       </Routes>
     </Router>
   );
