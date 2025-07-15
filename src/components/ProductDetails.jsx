@@ -5,8 +5,7 @@ import Footer from "./Footer";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
-import Review from "./Review";
-import ReviewList from "./Reviewlist";
+import { useEffect, useState } from "react";
 
 function ProductDetail() {
 
@@ -14,6 +13,38 @@ function ProductDetail() {
   let loc = useLocation()
 
   let a = loc.state
+
+  let id = a._id
+
+
+
+
+  // review ----------------
+  let [review, setreview] = useState([])
+  let inputvalue = (e) => {
+    setreview({ ...review, [e.target.name]: e.target.value })
+  }
+
+
+
+  let reviewbtn = () => {
+    axios.post("http://localhost:8080/productreview", { review, id }).then((res) => {
+      if (res.data.status) {
+        Swal.fire({
+          title: "review submit !",
+          icon: "success"
+        })
+
+        setTimeout(()=>{
+          window.location.reload()
+        },2000)
+      }
+    }).catch((err) => {
+      console.log(err)
+    })
+  }
+
+
 
 
 
@@ -31,6 +62,33 @@ function ProductDetail() {
       console.log(err)
     })
   }
+
+
+
+
+
+  // review list ---------------------------------
+  let [reviews, setreviews] = useState([])
+
+  useEffect(() => {
+    reviewapidata()
+  }, [])
+
+
+  let reviewapidata = () => {
+    axios.get("http://localhost:8080/allreview").then((res) => {
+      if (res.data.status) {
+        setreviews(res.data.ourreview)
+      }
+    }).catch((err) => {
+      console.log(err)
+    })
+  }
+
+
+
+    // filterreview -------------
+  let filterreview=reviews.filter(data=> data.productid==id)
 
 
   return (
@@ -52,7 +110,7 @@ function ProductDetail() {
 
           {/* Product Info */}
           <div className="space-y-6">
-      
+
 
             {/* Category */}
             <p className="text-green-600 font-semibold">{a.productcategory}</p>
@@ -136,12 +194,91 @@ function ProductDetail() {
 
           {/* Review list */}
           <div className="w-full md:w-1/2">
-            <ReviewList />
+            <div className="p-4 max-w-xl mx-auto">
+              <h1 className="font-extrabold text-2xl mb-1">Reviews</h1>
+              <p className="text-gray-600 mb-4">{filterreview.length} Review{filterreview.length > 1 ? 's' : ''}</p>
+
+              {filterreview.map((item) => (
+                <div
+                  className="bg-white shadow-md rounded-lg p-4 mb-4 border border-gray-200"
+                >
+                  {/* Avatar + Name */}
+                  <div className="flex items-center mb-2">
+                    <div
+                      className="w-10 h-10 rounded-full mr-3 text-white uppercase flex items-center justify-center"
+                      style={{ backgroundColor: '#28a745' }}
+                    >
+                      {item.name[0]}
+                    </div>
+                    <div>
+                      <p className="font-semibold text-gray-800">{item.name}</p>
+                    </div>
+                  </div>
+
+                  {/* Review message */}
+                  <p className="text-gray-700 italic">"{item.review}"</p>
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* Review form */}
           <div className="w-full md:w-1/2 space-y-6">
-            <Review />
+            <div style={{ padding: '1rem', fontFamily: 'Arial' }}>
+              <div
+                style={{
+                  marginTop: '1rem',
+                  padding: '1rem',
+                  border: '1px solid #ccc',
+                  borderRadius: '8px',
+                  maxWidth: '400px',
+                  backgroundColor: '#f9f9f9',
+                }}
+              >
+                <h3 className='font-bold mb-4'>Write A Review</h3>
+                <label>Your Name</label>
+                <input
+                  onChange={inputvalue}
+                  type="text"
+                  placeholder="Your Name"
+                  name="fullname"
+                  style={{
+                    width: '100%',
+                    padding: '0.5rem',
+                    marginBottom: '0.75rem',
+                    border: '1px solid #ccc',
+                    borderRadius: '4px',
+                  }}
+                />
+
+                <label>Your Review</label>
+                <textarea
+                  placeholder="Your Review"
+                  rows="4"
+                  onChange={inputvalue}
+                  name="review"
+                  style={{
+                    width: '100%',
+                    padding: '0.5rem',
+                    marginBottom: '0.75rem',
+                    border: '1px solid #ccc',
+                    borderRadius: '4px',
+                  }}
+                />
+                <button onClick={reviewbtn}
+                  style={{
+                    backgroundColor: '#28a745',
+                    color: 'white',
+                    border: 'none',
+                    padding: '10px 25px',
+                    borderRadius: '4px',
+                    cursor: 'pointer',
+                  }}
+                >
+                  Submit
+                </button>
+              </div>
+            </div>
           </div>
 
         </div>
