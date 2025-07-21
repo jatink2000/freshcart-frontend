@@ -11,6 +11,7 @@ import DashBoardProduct from './Dashboard/Pages/DashBoardProduct';
 import AddProductForm from './Dashboard/components/AddProductForm';
 import Editproduct from './Dashboard/components/Editproduct';
 import ProductDetail from './components/ProductDetails';
+import ShopCart from './components/Shopcart';
 
 
 
@@ -29,6 +30,8 @@ const App = () => {
         <Route path="/dashboard/DashBoardProduct" element={<DashBoardProduct />} />
         <Route path="/AddProductForm" element={<AddProductForm />} />
         <Route path="/Editproduct" element={<Editproduct />} />
+        <Route path="/shopcart" element={<ShopCart/>} />
+
 
       </Routes>
     </Router>

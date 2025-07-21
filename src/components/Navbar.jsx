@@ -80,7 +80,7 @@ function Navbar(){
 
             {/* Cart */}
             <div className="relative cursor-pointer text-gray-600 hover:text-green-600">
-              <FontAwesomeIcon icon={faShoppingBag} />
+             <Link to="/shopcart"><FontAwesomeIcon icon={faShoppingBag} /></Link> 
               <span className="absolute -top-2 -right-3 bg-green-600 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
                 5
               </span>
