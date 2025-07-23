@@ -1,16 +1,22 @@
 import React from "react";
+import { Link, useLocation } from "react-router-dom";
 
-function CheckoutComp(){
+function CheckoutComp() {
+
+  let loc = useLocation()
+  let cartitem = loc.state
+
+
+
+  const totalAmount = cartitem.reduce(
+    (acc, item) => acc + item.saleprice * item.productquantity,
+    0
+  );
   return (
     <div>
       <div className="min-h-screen bg-gray-100 p-8">
         {/* Page Title */}
         <h1 className="text-3xl font-bold text-gray-800 mb-2">Checkout</h1>
-        <p className="text-sm text-gray-600">
-          Already have an account?{" "}
-          <span className="text-green-600 cursor-pointer">Sign in.</span>
-        </p>
-
 
 
         {/* Layout Grid */}
@@ -19,9 +25,19 @@ function CheckoutComp(){
           <div className="lg:col-span-2 space-y-6">
             {/* Delivery Address */}
             <div>
-              <h2 className="text-xl font-semibold text-gray-800 mb-2 flex items-center gap-2">
+
+            
+               <h2 className="text-xl font-semibold text-gray-800 mb-2 flex items-center gap-2" >
                 <span>📍</span> Add delivery address
-              </h2>
+              </h2> 
+             
+              {/* Add New Address Button */}
+              <Link to={"/Addnewaddress"}>
+              <button className="mt-3 bg-green-600 text-white px-4 py-2 rounded text-sm hover:bg-green-700">
+                + Add a new address
+              </button>
+              </Link>
+
 
               <div className="flex gap-4 flex-wrap">
                 {/* Address Card 1 */}
@@ -39,28 +55,9 @@ function CheckoutComp(){
                   </div>
                 </div>
 
-                {/* Address Card 2 */}
-                <div className="bg-white border rounded-lg p-4 w-full sm:w-[48%]">
-                  <p className="font-semibold text-gray-700 mb-1">○ Office</p>
-                  <p className="text-gray-700 text-sm">Nitu Chauhan</p>
-                  <p className="text-gray-600 text-sm">
-                    3853 Coal Road, PA, US
-                  </p>
-                  <p className="text-gray-600 text-sm mb-2">402-776-1106</p>
-                  <button className="text-green-600 text-xs">
-                    Set as Default
-                  </button>
-                  <div className="flex gap-3 text-sm text-blue-600 mt-2">
-                    <button>Edit</button>
-                    <button>Delete</button>
-                  </div>
-                </div>
               </div>
 
-              {/* Add New Address Button */}
-              <button className="mt-3 bg-green-600 text-white px-4 py-2 rounded text-sm hover:bg-green-700">
-                + Add a new address
-              </button>
+
             </div>
 
             {/* Payment Method */}
@@ -104,53 +101,42 @@ function CheckoutComp(){
 
             <div className="space-y-4">
               {/* Item 1 */}
-              <div className="flex justify-between items-center border-b pb-2">
-                <div>
-                  <p className="font-medium text-gray-700">
-                    Haldiram's Sev Bhujia
-                  </p>
-                  <p className="text-sm text-gray-500">1 x $21.60</p>
-                </div>
-                <p className="font-semibold text-gray-800">$21.60</p>
-              </div>
 
-              {/* Item 2 */}
-              <div className="flex justify-between items-center border-b pb-2">
-                <div>
-                  <p className="font-medium text-gray-700">
-                    NutriChoice Digestive
-                  </p>
-                  <p className="text-sm text-gray-500">1 x $24.00</p>
-                </div>
-                <p className="font-semibold text-gray-800">$24.00</p>
-              </div>
 
-              {/* Item 3 */}
-              <div className="flex justify-between items-center border-b pb-2">
-                <div>
-                  <p className="font-medium text-gray-700">Cadbury 5 Star</p>
-                  <p className="text-sm text-gray-500">1 x $33.25</p>
-                </div>
-                <p className="font-semibold text-gray-800">$33.25</p>
-              </div>
+              {cartitem.map((item) => {
+                return (
+                  <>
+                    <div className="flex justify-between items-center border-b pb-2">
+                      <div>
+                        <p className="font-medium text-gray-700">
+                          {item.producttitle}
+                        </p>
+                        <p className="text-sm text-gray-500">{item.productquantity} x ${item.saleprice}</p>
+                      </div>
+                      <p className="font-semibold text-gray-800">${item.productquantity * item.saleprice}</p>
+                    </div>
+
+                  </>
+                )
+              })}
+
+
+
+
 
               {/* Total Summary */}
               <div className="pt-4 border-t space-y-2 text-sm">
                 <div className="flex justify-between">
                   <span>Item Subtotal</span>
-                  <span>$93.55</span>
+                  <span>${totalAmount}</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Shipping Fee</span>
                   <span>$0.00</span>
                 </div>
-                <div className="flex justify-between">
-                  <span>Tax (18%)</span>
-                  <span>$16.84</span>
-                </div>
                 <div className="flex justify-between font-semibold text-lg pt-2 border-t">
                   <span>Grand Total</span>
-                  <span>$110.39</span>
+                  <span>${totalAmount}</span>
                 </div>
               </div>
             </div>
@@ -164,6 +150,6 @@ function CheckoutComp(){
 export default CheckoutComp;
 
 
-// delete wishlist : 
-// add to cart 
+// delete wishlist :
+// add to cart
 // cart : display 

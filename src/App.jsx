@@ -12,6 +12,7 @@ import AddProductForm from './Dashboard/components/AddProductForm';
 import Editproduct from './Dashboard/components/Editproduct';
 import ProductDetail from './components/ProductDetails';
 import ShopCart from './components/Shopcart';
+import Addnewaddress from './components/Addnewaddress';
 
 
 
@@ -26,6 +27,8 @@ const App = () => {
         <Route path="/wishlistpage" element={<WishListPage />} />
         <Route path="/ProductDetail" element={<ProductDetail />} />
         <Route path='/CheckOutPage' element={<CheckOutPage/>} />
+        <Route path='/Addnewaddress' element={<Addnewaddress/>} />
+
         <Route path="/dashboard" element={<DashBoard />} />
         <Route path="/dashboard/DashBoardProduct" element={<DashBoardProduct />} />
         <Route path="/AddProductForm" element={<AddProductForm />} />
