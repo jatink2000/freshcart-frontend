@@ -12,6 +12,31 @@ function CheckoutComp() {
     (acc, item) => acc + item.saleprice * item.productquantity,
     0
   );
+
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    var options = {
+      key: "rzp_test_zLBz5tT46J6rSB",
+      key_secret: "P4JAUwn4VdE6xDLJ6p2Zy8RQ",
+      amount: parseInt(totalAmount) * 100,
+      currency: "INR",
+      name: "FreshCart",
+      description: "for testing purpose",
+      handler: function (response) {
+        const paymentId = response.razorpay_payment_id;
+        console.log("paymant id", paymentId, shipping_address);
+      },
+      theme: {
+        color: "#0aad0a",
+      },
+    };
+    var pay = new window.Razorpay(options);
+    pay.open();
+  };
+
+
+
   return (
     <div>
       <div className="min-h-screen bg-gray-100 p-8">
@@ -26,16 +51,16 @@ function CheckoutComp() {
             {/* Delivery Address */}
             <div>
 
-            
-               <h2 className="text-xl font-semibold text-gray-800 mb-2 flex items-center gap-2" >
+
+              <h2 className="text-xl font-semibold text-gray-800 mb-2 flex items-center gap-2" >
                 <span>📍</span> Add delivery address
-              </h2> 
-             
+              </h2>
+
               {/* Add New Address Button */}
               <Link to={"/Addnewaddress"}>
-              <button className="mt-3 bg-green-600 text-white px-4 py-2 rounded text-sm hover:bg-green-700">
-                + Add a new address
-              </button>
+                <button className="mt-3 bg-green-600 text-white px-4 py-2 rounded text-sm hover:bg-green-700">
+                  + Add a new address
+                </button>
               </Link>
 
 
@@ -87,7 +112,7 @@ function CheckoutComp() {
 
             {/* Place Order Button */}
             <div className="text-right">
-              <button className="mt-4 bg-green-600 text-white px-6 py-3 rounded-md text-sm font-medium hover:bg-green-700">
+              <button className="mt-4 bg-green-600 text-white px-6 py-3 rounded-md text-sm font-medium hover:bg-green-700" onClick={handleSubmit}>
                 🛒 Place Order
               </button>
             </div>
