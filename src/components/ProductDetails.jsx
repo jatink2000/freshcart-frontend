@@ -28,7 +28,7 @@ function ProductDetail() {
 
 
   let reviewbtn = () => {
-    axios.post("http://localhost:8080/productreview", { review, id }).then((res) => {
+    axios.post("https://freshcartbackend-lilac.vercel.app/productreview", { review, id }).then((res) => {
       if (res.data.status) {
         Swal.fire({
           title: "review submit !",
@@ -51,7 +51,7 @@ function ProductDetail() {
 
   // wishlist ------------
   let wishlist = (a) => {
-    axios.post("http://localhost:8080/wishlist", { a }).then((res) => {
+    axios.post("https://freshcartbackend-lilac.vercel.app/wishlist", { a }).then((res) => {
       if (res.data.status) {
         Swal.fire({
           title: "Wishlist Success !",
@@ -76,7 +76,7 @@ function ProductDetail() {
 
 
   let reviewapidata = () => {
-    axios.get("http://localhost:8080/allreview").then((res) => {
+    axios.get("https://freshcartbackend-lilac.vercel.app/allreview").then((res) => {
       if (res.data.status) {
         setreviews(res.data.ourreview)
       }
@@ -104,7 +104,7 @@ function ProductDetail() {
 
 
   let apidata = () => {
-    axios.get("http://localhost:8080/products").then((res) => {
+    axios.get("https://freshcartbackend-lilac.vercel.app/products").then((res) => {
       if (res.data.status) {
         setProducts(res.data.ourproducts)
       }
@@ -137,7 +137,7 @@ function ProductDetail() {
 
 
   let cartbtn=(cartitem)=>{
-    axios.post("http://localhost:8080/cart",{cartitem}).then((res) => {
+    axios.post("https://freshcartbackend-lilac.vercel.app/cart",{cartitem}).then((res) => {
       if (res.data.status) {
         alert("add to cart")
       }

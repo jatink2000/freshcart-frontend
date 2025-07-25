@@ -25,7 +25,7 @@ function Editproduct() {
 
 
     let editproductbtn = () => {
-        axios.post("http://localhost:8080/editproduct", { edititem }).then((res) => {
+        axios.post("https://freshcartbackend-lilac.vercel.app/editproduct", { edititem }).then((res) => {
             if (res.data.status) {
                 Swal.fire({
                     title: "edit product.",

@@ -27,7 +27,7 @@ function DashBoardProduct() {
 
 
   let apidata = () => {
-    axios.get("http://localhost:8080/products").then((res) => {
+    axios.get("https://freshcartbackend-lilac.vercel.app/products").then((res) => {
       if (res.data.status) {
         setProducts(res.data.ourproducts)
       }
@@ -55,7 +55,7 @@ function DashBoardProduct() {
     }).then((result) => {
 
       if (result.isConfirmed) {
-        axios.post("http://localhost:8080/deleteproduct", product).then((res) => {
+        axios.post("https://freshcartbackend-lilac.vercel.app/deleteproduct", product).then((res) => {
           if (res.data.status) {
             Swal.fire({
               title: "Delete product.",

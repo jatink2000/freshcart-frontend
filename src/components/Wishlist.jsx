@@ -17,7 +17,7 @@ function Wishlist() {
 
 
   let wishlistitem = () => {
-    axios.get("http://localhost:8080/wishlistsproduct").then((res) => {
+    axios.get("https://freshcartbackend-lilac.vercel.app/wishlistsproduct").then((res) => {
       if (res.data.status) {
         setwishlist(res.data.wishlistsproduct)
       }

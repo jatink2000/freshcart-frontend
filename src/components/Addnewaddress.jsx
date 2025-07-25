@@ -14,7 +14,7 @@ function Addnewaddress() {
 
 
     let addressbtn = () => {
-    axios.post("http://localhost:8080/addaddress", {address})
+    axios.post("https://freshcartbackend-lilac.vercel.app/addaddress", {address})
     .then((res) => {
       if (res.data.status) {
         Swal.fire({

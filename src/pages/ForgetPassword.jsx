@@ -21,7 +21,7 @@ function ForgetPassword() {
 
   let resetbtn = () => {
     if (resetpassword.password == resetpassword.confrmpassword) {
-      axios.post("http://localhost:8080/resetpassword", { resetpassword }).then((res) => {
+      axios.post("https://freshcartbackend-lilac.vercel.app/resetpassword", { resetpassword }).then((res) => {
         if (res.data.status) {
           Swal.fire({
             title: "Reset Password Success !",

@@ -19,7 +19,7 @@ function AddProductForm() {
 
 
   let addproductbtn=()=>{
-    axios.post("http://localhost:8080/addproduct",{addproduct}).then((res) => {
+    axios.post("https://freshcartbackend-lilac.vercel.app/addproduct",{addproduct}).then((res) => {
           if (res.data.status) {
             Swal.fire({
               title: "Add Product Success !",

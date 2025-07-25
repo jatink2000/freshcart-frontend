@@ -22,7 +22,7 @@ const ShopCart = () => {
 
 
     let cartdata = () => {
-        axios.get("http://localhost:8080/allcartitem").then((res) => {
+        axios.get("https://freshcartbackend-lilac.vercel.app/allcartitem").then((res) => {
             if (res.data.status) {
                 setCartItems(res.data.ourcartitem)
             }
@@ -50,7 +50,7 @@ const ShopCart = () => {
         // removecartitem ------------------
 
         let removecartitem = (item) => {
-            axios.post("http://localhost:8080/removecartitem", item).then((res) => {
+            axios.post("https://freshcartbackend-lilac.vercel.app/removecartitem", item).then((res) => {
                 if (res.data.status) {
                     alert("remove item")
 
@@ -73,7 +73,7 @@ const ShopCart = () => {
         let increasequantity = () => {
             setquantity(++quantity)
 
-            axios.post("http://localhost:8080/updatequantity", { quantity, data })
+            axios.post("https://freshcartbackend-lilac.vercel.app/updatequantity", { quantity, data })
 
             window.location.reload()
 
@@ -84,7 +84,7 @@ const ShopCart = () => {
         let decresequantity = () => {
             setquantity(--quantity)
 
-            axios.post("http://localhost:8080/updatequantity", { quantity, data })
+            axios.post("https://freshcartbackend-lilac.vercel.app/updatequantity", { quantity, data })
             window.location.reload()
 
         }

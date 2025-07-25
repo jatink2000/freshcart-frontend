@@ -23,7 +23,7 @@ function SignUp() {
 
 
   let signupbtn = () => {
-    axios.post("http://localhost:8080/signup", { signupdata }).then((res) => {
+    axios.post("https://freshcartbackend-lilac.vercel.app/signup", { signupdata }).then((res) => {
       if (res.data.status) {
         Swal.fire({
           title: "Signup Success !",
